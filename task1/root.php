@@ -2,8 +2,8 @@
    if($_POST){
        $number = $_POST['num'];
        $root = $_POST['root']; 
-       if($number != null && $root != null){
-           if($number >= 0 && $root != 0){
+       
+       if($number >= 0 && $root != 0){
             $operator = $number ** (1/$root);
             $message = "<div class='alert alert-primary'> 
             Number : $number <br>
@@ -14,13 +14,6 @@
                 $message = "<div class='alert alert-danger'> 
                 Mathmatic error 
                 </div>";
-            }
-       }else{
-           // error Not Acceptable
-        http_response_code(406);
-        $message = "<div class='alert alert-danger'> 
-                Enter Values in All Fields
-            </div>";
        }
    }
 ?>
@@ -45,14 +38,14 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num"> Number </label>
                             </div>
-                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number">
+                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number" required>
                         </div>
 
                         <div class="input-group mt-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="root" > root </label>
                             </div>
-                          <input type="number" name="root" id="root" class="form-control" placeholder="Enter Your root">
+                          <input type="number" name="root" id="root" class="form-control" placeholder="Enter Your root" required>
                         </div>
                         
                         <div class="form-group">

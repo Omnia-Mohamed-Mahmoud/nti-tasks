@@ -1,38 +1,28 @@
 <?php
   if($_POST){
       $number = $_POST['num'];
-      
-      if($number != null){
           if($number >= 0 ){
-            $even = $number % 2;
-            if($number == 0 || $even == 0){
+            if($number == 0 || $number % 2 == 0){
 
-                $message = "<div class='alert alert-primary'> 
-                Number : $number is even
-                </div>";
+              $stateNumber = 'even';
                 
-              }else{
-    
-                $message = "<div class='alert alert-primary'> 
-                Number : $number is odd
-                </div>";
+            }else{
 
-              }
+              $stateNumber = 'odd';
+
+            }
+
+            $message = "<div class='alert alert-primary'> 
+               Number : $number is $stateNumber
+              </div>";
+
           }else{
-              // error Not Acceptable
-            http_response_code(406);
+
             $message = "<div class='alert alert-danger'> 
                 Negative can't to be odd or even
             </div>";
           }
-      }else{
-        // error Not Acceptable
-        http_response_code(406);
-        $message = "<div class='alert alert-danger'> 
-                Enter Value to get output
-            </div>";
       }
-  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,7 +44,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num"> Number </label>
                             </div>
-                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number">
+                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number" required>
                         </div>
                         
                         <div class="form-group">

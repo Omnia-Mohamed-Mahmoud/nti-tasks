@@ -3,62 +3,43 @@ if($_POST){
     $num1 = $_POST['num1'];
     $num2 = $_POST['num2'];
     $num3 = $_POST['num3'];
-    if($num1 != null && $num2 != null && $num3 != null){
 
+    if(($num1 !== $num2) && ($num2 !== $num3) && ($num1 !== $num3)){
         if(($num1 > $num2) && ($num1 > $num3)){
             $max = $num1 ;
             if($num2 < $num3){
                 $min = $num2 ;
             }else{
-                $min = $num3;
-            }
-            $message = "<div class='alert alert-success'> 
-                Num1 : $num1 <br>
-                Num2 : $num2 <br>
-                Num3 : $num3 <br>
-                Max Number : $max <br>
-                Min Number : $min 
-            </div>" ;
+                 $min = $num3;
+            } 
         }elseif(($num2 > $num1) && ($num2 > $num3)){
             $max = $num2 ;
             if($num1 < $num3){
                 $min = $num1 ;
-            }else{
+            }else{   
                 $min = $num3;
             }
-            $message = "<div class='alert alert-success'> 
-                Num1 : $num1 <br>
-                Num2 : $num2 <br>
-                Num3 : $num3 <br>
-                Max Number : $max <br>
-                Min Number : $min 
-            </div>";
-        }elseif(($num3 > $num1) && ($num3 > $num2)){
+        }else{
             $max = $num3 ;
             if($num1 < $num2){
                 $min = $num1 ;
             }else{
                 $min = $num2;
             }
-            $message = "<div class='alert alert-success'> 
-                Num1 : $num1 <br>
-                Num2 : $num2 <br>
-                Num3 : $num3 <br>
-                Max Number : $max <br>
-                Min Number : $min 
-            </div>";
-        }else{
-            // error Not Acceptable
-            http_response_code(406);
-            $message = "<div class='alert alert-danger'> 
-                Enter Values Not equal 
-            </div>";
         }
+
+        $message = "<div class='alert alert-success'> 
+        Num1 : $num1 <br>
+        Num2 : $num2 <br>
+        Num3 : $num3 <br>
+        Max Number : $max <br>
+        Min Number : $min 
+        </div>" ;
+    
     }else{
-        // error Not Acceptable
-        http_response_code(406);
+        
         $message = "<div class='alert alert-danger'> 
-                Enter Values in All Fields 
+            Enter Values Not equal 
             </div>";
     }
 }
@@ -83,21 +64,21 @@ if($_POST){
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num1"> Num1 </label>
                             </div>
-                          <input type="number" name="num1" id="num1" class="form-control" placeholder="Enter Your num1">
+                          <input type="number" name="num1" id="num1" class="form-control" placeholder="Enter Your num1" required>
                         </div>
 
                         <div class="input-group mt-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num2" >Num2 </label>
                             </div>
-                          <input type="number" name="num2" id="num2" class="form-control" placeholder="Enter Your num2">
+                          <input type="number" name="num2" id="num2" class="form-control" placeholder="Enter Your num2" required>
                         </div>
 
                         <div class="input-group mt-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num3" >Num3 </label>
                             </div>
-                          <input type="number" name="num3" id="num3" class="form-control" placeholder="Enter Your num3">
+                          <input type="number" name="num3" id="num3" class="form-control" placeholder="Enter Your num3" required>
                         </div>
                         
                         <div class="form-group">

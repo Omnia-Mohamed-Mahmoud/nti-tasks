@@ -2,70 +2,47 @@
   if($_POST){
       $unit = $_POST['unit'];
       define('surchargePre', .2);
-      if($unit != null){
-          if($unit >= 0 && $unit < 50){
-            $totalUnits = $unit * 50/100 ;
-            $surchargePrice = $totalUnits * surchargePre ;
-            $totalPrice = $totalUnits + $surchargePrice;
-            $message = "<div class='alert alert-primary'> 
-            Electric unit : $unit unit <br>
-            one unit price : .50/unit <br>
-            total units price : $totalUnits EGP<br>
-            surcharge : 20% <br>
-            surcharge price : $surchargePrice EGP<br>
-            total Price : $totalPrice EGP
+
+      if($unit > 0 ){
+        
+        if($unit <= 50){
+
+          $oneUnit = 50 / 100 ;
+        
+        }elseif($unit > 50 && $unit <= 150){
+
+          $oneUnit = 75 /100 ;
+
+        }elseif($unit > 150 && $unit <= 250){
+
+          $oneUnit = 120 /100 ;
+
+        }else{
+
+          $oneUnit = 150  /100;
+        }
+        
+        $totalUnits = $unit * $oneUnit ;
+        $surchargePrice = $totalUnits * surchargePre ;
+        $totalPrice = $totalUnits + $surchargePrice;
+
+        $message = "<div class='alert alert-primary'> 
+          Electric unit : $unit unit <br>
+          one unit price : $oneUnit /unit <br>
+          total units price : $totalUnits EGP<br>
+          surcharge : 20% <br>
+          surcharge price : $surchargePrice EGP<br>
+          total Price : $totalPrice EGP
+          </div>";
+        
+        }else{
+          
+          $message = "<div class='alert alert-danger'> 
+            Enter Correct value to calculate total electricity bill 
             </div>";
-          }elseif($unit >= 50 && $unit < 150){
-            $totalUnits = $unit * 75/100 ;
-            $surchargePrice = $totalUnits * surchargePre ;
-            $totalPrice = $totalUnits + $surchargePrice;
-            $message = "<div class='alert alert-primary'> 
-            Electric unit : $unit unit <br>
-            one unit price : .75/unit <br>
-            total units price : $totalUnits EGP<br>
-            surcharge : 20% <br>
-            surcharge price : $surchargePrice EGP<br>
-            total Price : $totalPrice EGP
-            </div>";
-          }elseif($unit >= 150 && $unit < 250){
-            $totalUnits = $unit * 120/100 ;
-            $surchargePrice = $totalUnits * surchargePre ;
-            $totalPrice = $totalUnits + $surchargePrice;
-            $message = "<div class='alert alert-primary'> 
-            Electric unit : $unit unit <br>
-            one unit price : 1.20/unit <br>
-            total units price : $totalUnits EGP<br>
-            surcharge : 20% <br>
-            surcharge price : $surchargePrice EGP<br>
-            total Price : $totalPrice EGP
-            </div>";
-          }elseif($unit >= 250){
-            $totalUnits = $unit * 150/100 ;
-            $surchargePrice = $totalUnits * surchargePre ;
-            $totalPrice = $totalUnits + $surchargePrice;
-            $message = "<div class='alert alert-primary'> 
-            Electric unit : $unit unit <br>
-            one unit price : 1.50/unit <br>
-            total units price : $totalUnits EGP<br>
-            surcharge : 20% <br>
-            surcharge price : $surchargePrice EGP<br>
-            total Price : $totalPrice EGP
-            </div>";
-          }else{
-              // error Not Acceptable
-            http_response_code(406);
-            $message = "<div class='alert alert-danger'> 
-                Enter value positive to calculate electricity
-            </div>";
+          
           }
-      }else{
-        // error Not Acceptable
-        http_response_code(406);
-        $message = "<div class='alert alert-danger'> 
-                Enter Value to calculate electricity
-            </div>";
-      }
-  }
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -87,7 +64,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="unit"> electricity unit </label>
                             </div>
-                          <input type="number" name="unit" id="unit" class="form-control" placeholder="Enter Your electricity unit">
+                          <input type="number" name="unit" id="unit" class="form-control" placeholder="Enter Your electricity unit" required>
                         </div>
                         
                         <div class="form-group">

@@ -1,37 +1,33 @@
 <?php
   if($_POST){
+
       $number = $_POST['num'];
-      if($number != null){
 
-          if($number < 0){
+      if($number == 0){
 
-            $message = "<div class='alert alert-primary'> 
-            Number : $number <br>
-            Signed :  Negative
-            </div>";
-            
-          }elseif($number > 0){
-
-            $message = "<div class='alert alert-primary'> 
-            Number : $number <br>
-            Signed :  Positive
-            </div>";
-
-          }else{
-
-            $message = "<div class='alert alert-danger'> 
-            Number : $number <br>
-            Signed : Not Positive and Not Negative
-            </div>";
-
-          }
-      }else{
-        // error Not Acceptable
-        http_response_code(406);
+        $signalNum = 'Not Positive and Not Negative';
         $message = "<div class='alert alert-danger'> 
-                Enter Value to get output
-            </div>";
-      }
+        Number : $number <br>
+        Signed :  $signalNum
+        </div>";
+
+      }else{
+        
+        if($number < 0){
+          
+          $signalNum = 'Negative';
+        
+        }else{
+
+          $signalNum = 'Positive';
+      
+        }
+        
+        $message = "<div class='alert alert-primary'> 
+        Number : $number <br>
+        Signed :  $signalNum
+        </div>";
+     }
   }
 ?>
 <!doctype html>
@@ -54,7 +50,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-primary text-light" for="num"> Number </label>
                             </div>
-                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number">
+                          <input type="number" name="num" id="num" class="form-control" placeholder="Enter Your number" required>
                         </div>
                         
                         <div class="form-group">
