@@ -13,6 +13,8 @@ $users = [
         'name' => 'mohamed',
         "gender" => (object)[
             'gender' => 'm'
+        ], "gend" => (object)[
+            'hopp' => 'm'
         ],
         'hobbies' => [
             'swimming', 'running',
@@ -27,9 +29,13 @@ $users = [
         'name' => 'menna',
         "gender" => (object)[
             'gender' => 'f'
+        ],"gend" => (object)[
+            'hopp' => 'm'
         ],
         'hobbies' => [
-            'running',
+            'm',
+        ],"gend" => (object)[
+            'hopp' => 'f'
         ],
         'activities' => [
             "school" => 'painting',
@@ -41,6 +47,8 @@ $users = [
         'name' => 'mohamed',
         "gender" => (object)[
             'gender' => 'm'
+        ],"gend" => (object)[
+            'hopp' => 'm'
         ],
         'hobbies' => [
             'swimming', 'running',
@@ -74,10 +82,14 @@ foreach($users as $user){
         }elseif(gettype($data) == 'object'){
             foreach($data as $key => $values){
                 $gender = $data -> $key ;
-                if($gender == 'f'){
-                    $tbody .=  " female " ;
+                if($key == "gender"){
+                    if($gender == 'f'){
+                        $tbody .=  " female " ;
+                    }else{
+                        $tbody .=  " male " ;
+                    }
                 }else{
-                    $tbody .=  " male " ;
+                    $tbody .=  $data -> $key ;
                 }
             }
         }else{
